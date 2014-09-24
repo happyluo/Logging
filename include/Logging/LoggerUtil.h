@@ -20,7 +20,7 @@ public:
     std::string Str() const;
    
     std::ostringstream& Strstream(); // For internal use only. Don't use in your code.
-	
+    
 private:
 
     std::ostringstream m_strstream;
@@ -35,7 +35,7 @@ operator <<(LoggerOutputBase& out, const T& val)
 }
 
 LOGGING_API LoggerOutputBase& operator <<(LoggerOutputBase&, std::ios_base& (*)(std::ios_base&));
-LOGGING_API LoggerOutputBase& operator <<(LoggerOutputBase&, std::ostream& (*)(std::ostream&));		// for std::endl like io function
+LOGGING_API LoggerOutputBase& operator <<(LoggerOutputBase&, std::ostream& (*)(std::ostream&));        // for std::endl like io function
 LOGGING_API LoggerOutputBase& operator <<(LoggerOutputBase&, const ::std::exception& ex);
 
 template<class L, class LPtr, void (L::*output)(const std::string&)>
@@ -56,8 +56,8 @@ public:
         std::string s = Strstream().str();
         if (!s.empty())
         {
-			L& ref = *m_logger;
-			(ref.*output)(s);
+            L& ref = *m_logger;
+            (ref.*output)(s);
         }
         Strstream().str("");
     }
@@ -66,7 +66,6 @@ private:
    
     LPtr m_logger;
 };
-
 
 typedef LoggerOutput<Logger, LoggerPtr, &Logger::Print> Print;
 typedef LoggerOutput<Logger, LoggerPtr, &Logger::Warning> Warning;

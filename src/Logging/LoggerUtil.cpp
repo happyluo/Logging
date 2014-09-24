@@ -11,11 +11,6 @@
 
 using namespace std;
 
-namespace UtilInternal
-{
-extern bool DECLSPEC_IMPORT printStackTraces;
-}
-
 LOGGING_BEGIN
 
 string
@@ -40,22 +35,13 @@ operator <<(LoggerOutputBase& out, std::ios_base& (*val)(std::ios_base&))
 LoggerOutputBase& 
 operator <<(LoggerOutputBase& out, std::ostream& (*val)(std::ostream&))
 {
-	out.Strstream() << val;
-	return out;
+    out.Strstream() << val;
+    return out;
 }
 
 LoggerOutputBase&
 operator <<(LoggerOutputBase& out, const std::exception& ex)
 {
-    if (UtilInternal::printStackTraces)
-    {
-        const ::Util::Exception* exception = dynamic_cast<const ::Util::Exception*>(&ex);
-        if (exception)
-        {
-            out.Strstream() << exception->what() << '\n' << exception->StackTrace();
-            return out;
-        }
-    }
     out.Strstream() << ex.what();
     return out;
 }
@@ -77,16 +63,7 @@ Trace::Flush()
     string s = Strstream().str();
     if (!s.empty())
     {
-		m_logger->Trace(m_category, s);
-
-		//if (m_logger)
-		//{
-		//	m_logger->Trace(m_category, s);
-		//}
-		//else
-		//{
-		//	Logger("", "").Trace(m_category, s);
-		//}
+        m_logger->Trace(m_category, s);
     }
     Strstream().str("");
 }

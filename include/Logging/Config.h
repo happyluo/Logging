@@ -14,17 +14,17 @@
 // NAMESPACE 
 //
 #if defined(__cplusplus)
-#	define LOGGING_BEGIN			namespace Logging {
-#	define LOGGING_END				}
-#	define USING_LOGGING			using namespace Logging;
-#	define LOGGING					::Logging::
+#    define LOGGING_BEGIN            namespace Logging {
+#    define LOGGING_END                }
+#    define USING_LOGGING            using namespace Logging;
+#    define LOGGING                    ::Logging::
 
 #else // __cplusplus
 
-#	define LOGGING_BEGIN			
-#	define LOGGING_END				
-#	define USING_LOGGING			
-#	define LOGGING					
+#    define LOGGING_BEGIN            
+#    define LOGGING_END                
+#    define USING_LOGGING            
+#    define LOGGING                    
 
 #endif // __cplusplus
 
